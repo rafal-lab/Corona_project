@@ -78,14 +78,14 @@ fig = px.scatter_geo(formated_gdf, locations="Countries and territories", locati
                      title="Liczba smierci 24.03.2020 COVID-19 na swiecie"
                      )
 
-#fig.show()
+fig.show()
 
 fig2 = px.choropleth(formated_gdf, locations="Countries and territories", locationmode='country names',
                      color="Deaths", hover_name="Countries and territories",
                      range_color= [0, 150],
                      projection="natural earth",
                      title='Smiertelnosc COVID19 na swiecie')
-#fig2.show()
+fig2.show()
 
 nb_of_cases_in_Italy=frame.loc[frame['Countries and territories']=='Italy']
 
@@ -143,7 +143,7 @@ nb_cs.plot(y=['dth_in_Italy', 'dth_in_Spain','dth_in_USA'], x='DateRep',figsize=
 
 nb_cs.plot(y=['sum_in_Spain', 'sum_in_USA','sum_in_Italy'], x='DateRep',figsize=(12,8), marker='o', title='Wykres sumarycznej ilości przypadkow w Hiszpani, Włoszech i USA')
 nb_cs.plot(y=['sum_dth_in_Spain', 'sum_dth_in_USA','sum_dth_in_Italy'], x='DateRep',figsize=(12,8), marker='o', title='Wykres sumarycznej ilości śmierci w Hiszpani, Włoszech i USA')
-#plt.show()
+plt.show()
 
 allcountry=pd.read_csv(r'https://github.com/rafal-lab/Corona_project/blob/master/word.csv')
 USA=allcountry.loc[allcountry['Country/Region']=='US'].sort_values(by='3/23/20')
@@ -153,6 +153,6 @@ us=pd.DataFrame(USA[["Province/State", "Country/Region", 'Lat','Long','3/23/20']
 us=us.rename(columns={'3/23/20':'Deaths'})
 
 print(us)
-fig=px.scatter_geo(us,locations='Province/State',locationmode='USA-states',scope='usa',range_color=[0,20],color='Deaths',size='Deaths',title='Liczba zgonów w USA w dniu 23/03/2020')
+fig3=px.scatter_geo(us,locations='Province/State',locationmode='USA-states',scope='usa',range_color=[0,20],color='Deaths',size='Deaths',title='Liczba zgonów w USA w dniu 23/03/2020')
 
-fig.show()
+fig3.show()
