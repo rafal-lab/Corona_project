@@ -50,10 +50,7 @@ def give_Death(frame,country):
 
 xml=pd.read_excel(r'https://github.com/rafal-lab/Corona_project/blob/master/COVID-19-geographic-disbtribution-worldwide-2020-03-24.xlsx')
 frame=pd.DataFrame(xml)
-df=frame
-zh=df.loc[df["Countries and territories"]=="Poland",:].sort_values(by='Cases').tail(10).head(9).style.background_gradient(cmap='magma').highlight_null('red')
-print(zh)
-time.sleep(50)
+
 
 Poland=frame.loc[frame['Countries and territories']=='Poland']
 
