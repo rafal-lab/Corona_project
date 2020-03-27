@@ -25,7 +25,7 @@ def give_SUM(frame,country):
         else:
             lista[i] += lista[i - 1]
     lista.reverse()
-    lista = np.asarray(lista)
+    lista = np.asarray(lista) #daje sume przypadkow dzien po dniu
 
     return lista
 def give_Death(frame,country):
@@ -44,20 +44,16 @@ def give_Death(frame,country):
     lista.reverse()
     lista = np.asarray(lista)
 
-    return lista
+    return lista #daje liste smierci z danego kraju
 
 
 
 xml=pd.read_excel(r'https://github.com/rafal-lab/Corona_project/blob/master/COVID-19-geographic-disbtribution-worldwide-2020-03-24.xlsx')
 frame=pd.DataFrame(xml)
 
-
+#wybieramy dane z polski i je rysujemy
 Poland=frame.loc[frame['Countries and territories']=='Poland']
-
-
 rysunek=Poland.plot(y='Cases',x='DateRep', figsize=(12,8), marker='*', title='Liczba przypadków COVID-19 w Polsce danego dnia', grid=True)
-#plt.show()
-
 deathPoland=Poland[['DateRep','Deaths']]
 wskazniksmierci=deathPoland.plot(y='Deaths',x='DateRep', figsize=(12,8), marker='o', title="Liczba zgonów każdego dnia")
 #plt.show()
@@ -66,7 +62,7 @@ wskazniksmierci=deathPoland.plot(y='Deaths',x='DateRep', figsize=(12,8), marker=
 formated_gdf=frame.groupby(['Countries and territories']).max()
 formated_gdf=formated_gdf.loc[formated_gdf['Deaths']>0]
 formated_gdf['size'] = formated_gdf['Deaths'].pow(0.3)
-formated_gdf =  formated_gdf.reset_index()
+formated_gdf =  formated_gdf.reset_index() #szukamy panstwa na swiecie z smierciami wiekszymi od 0
 
 fig = px.scatter_geo(formated_gdf, locations="Countries and territories", locationmode='country names',
                      color="Deaths", size='size', hover_name="Countries and territories",
@@ -97,10 +93,10 @@ for i in range(len(lista)):
     else:
         lista[i]+=lista[i-1]
 lista.reverse()
-lista=np.asarray(lista)
+lista=np.asarray(lista) 
 
 
-nb_cs['sum_in_Italy']=lista
+nb_cs['sum_in_Italy']=lista #w celu stwrozenia
 
 cases_Italy_print=nb_cs.plot(x='DateRep',y='sum_in_Italy',figsize=(12,8), marker='o', title="Liczba przypadkow we Włoszech",grid=True)
 
