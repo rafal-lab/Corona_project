@@ -145,7 +145,7 @@ nb_cs.plot(y=['sum_in_Spain', 'sum_in_USA','sum_in_Italy'], x='DateRep',figsize=
 nb_cs.plot(y=['sum_dth_in_Spain', 'sum_dth_in_USA','sum_dth_in_Italy'], x='DateRep',figsize=(12,8), marker='o', title='Wykres sumarycznej ilości śmierci w Hiszpani, Włoszech i USA')
 #plt.show()
 
-allcountry=pd.read_csv('word.csv')
+allcountry=pd.read_csv(r'https://github.com/rafal-lab/Corona_project/blob/master/word.csv')
 USA=allcountry.loc[allcountry['Country/Region']=='US'].sort_values(by='3/23/20')
 USA=USA.fillna(value=0)
 us=pd.DataFrame(USA[["Province/State", "Country/Region", 'Lat','Long','3/23/20']].sort_values(by='3/23/20'))
