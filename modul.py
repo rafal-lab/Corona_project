@@ -48,7 +48,7 @@ def give_Death(frame,country):
 
 
 
-xml=pd.read_excel(r'C:\Users\raffr\Downloads\COVID-19-geographic-disbtribution-worldwide-2020-03-24.xlsx')
+xml=pd.read_excel(r'https://github.com/rafal-lab/Corona_project/blob/master/COVID-19-geographic-disbtribution-worldwide-2020-03-24.xlsx')
 frame=pd.DataFrame(xml)
 df=frame
 zh=df.loc[df["Countries and territories"]=="Poland",:].sort_values(by='Cases').tail(10).head(9).style.background_gradient(cmap='magma').highlight_null('red')
@@ -145,3 +145,14 @@ nb_cs.plot(y=['sum_in_Spain', 'sum_in_USA','sum_in_Italy'], x='DateRep',figsize=
 nb_cs.plot(y=['sum_dth_in_Spain', 'sum_dth_in_USA','sum_dth_in_Italy'], x='DateRep',figsize=(12,8), marker='o', title='Wykres sumarycznej ilości śmierci w Hiszpani, Włoszech i USA')
 #plt.show()
 
+allcountry=pd.read_csv('word.csv')
+USA=allcountry.loc[allcountry['Country/Region']=='US'].sort_values(by='3/23/20')
+USA=USA.fillna(value=0)
+us=pd.DataFrame(USA[["Province/State", "Country/Region", 'Lat','Long','3/23/20']].sort_values(by='3/23/20'))
+
+us=us.rename(columns={'3/23/20':'Deaths'})
+
+print(us)
+fig=px.scatter_geo(us,locations='Province/State',locationmode='USA-states',scope='usa',range_color=[0,20],color='Deaths',size='Deaths',title='Liczba zgonów w USA w dniu 23/03/2020')
+
+fig.show()
