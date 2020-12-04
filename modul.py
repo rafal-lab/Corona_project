@@ -8,8 +8,10 @@ import datetime
 
 
 today= datetime.date.today()
+#changing dateformat to string
 def day_to_string(day):
   return day.strftime('%m/%d/%y').lstrip("0").replace(" 0", " ")
+#giving the sum othe country thaht pass cases
 def give_SUM(frame, country):
     nb_of_cases = frame.loc[frame['Countries and territories'] == f'{country}']
 
