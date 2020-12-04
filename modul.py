@@ -68,9 +68,10 @@ def table_of_country(df, ctr1, ctr2, ctr3):
 
     return ass
 
-
+#FUNCTION TO find correct country
 def find_country(frame, country):
     return frame.loc[frame['Countries and territories'] == f'{country}']
+#sorting frame by country
 def sort_by_country(ramka):
     formated_gdf = ramka.groupby(['Countries and territories']).max()
     formated_gdf = formated_gdf.loc[formated_gdf['Deaths'] > 0]
